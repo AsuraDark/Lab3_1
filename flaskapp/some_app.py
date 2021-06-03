@@ -61,7 +61,7 @@ import os
 # для исключения конфликта имен
 
 
-#import net as neuronet
+import net as neuronet
 # метод обработки запроса GET и POST от клиента
 @app.route("/net", methods=['GET', 'POST'])
 def net():
