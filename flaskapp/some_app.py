@@ -92,20 +92,10 @@ def net():
         
         fig1_ = plt.figure(figsize=(14,14))
         sviewer_1 = fig1_.add_subplot(3,3,1)
-        sviewer_2 = fig1_.add_subplot(3,3,2)
-        sviewer_3 = fig1_.add_subplot(3,3,3)
+       
+        sviewer_1.imshow(fimage)
         
-        fimage1 = image_copy.copy()
-        
-        fimage2 = image_copy.copy()
-        
-        fimage3 = image_copy.copy()
-        
-        
-        sviewer_1.imshow(fimage1)
-        sviewer_2.imshow(fimage2)
-        sviewer_3.imshow(fimage3)
-        plt.show
+        plt.show()
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
     return render_template('net.html', form=form, image_name=filename, neurodic=neurodic)
