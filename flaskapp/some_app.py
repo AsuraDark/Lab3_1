@@ -62,6 +62,7 @@ import os
 
 import scipy.ndimage.filters as filt
 import net as neuronet
+import numpy as np
 # метод обработки запроса GET и POST от клиента
 @app.route("/net", methods=['GET', 'POST'])
 def net():
