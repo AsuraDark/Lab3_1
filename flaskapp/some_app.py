@@ -83,7 +83,7 @@ def net():
         # создаем копию изображения
         image_copy1 = image_copy.copy()
         # зашумляем изображение
-        image_rand = image_copy + (np.array.random.rand(*image_copy.shape)-0.5)*0.3
+        image_rand = image_copy + (np.random.rand(*image_copy.shape)-0.5)*0.3
         # нормируем зашумленное изображения в пределах от 0 до 1
         image_rand = (image_rand-image_rand.min()) / (image_rand.max()-
         image_rand.min())
