@@ -95,17 +95,17 @@ def net():
         sviewer_2 = fig1_.add_subplot(3,3,2)
         sviewer_3 = fig1_.add_subplot(3,3,3)
         
-        enhancer = ImageEnhance.Brightness(fimage)
+        enhancer = ImageEnhance.Brightness(image_copy)
         
-        fimage1 = fimage.copy()
+        fimage1 = image_copy.copy()
         factor = 1
         fimage1 = enhancer.enhance(factor)
         
-        fimage2 = fimage.copy()
+        fimage2 = image_copy.copy()
         facor = 0.5
         fimage2 = enhancer.enhance(factor)
         
-        fimage3 = fimage.copy()
+        fimage3 = image_copy.copy()
         facor = 1.5
         fimage3 = enhancer.enhance(factor)
         
