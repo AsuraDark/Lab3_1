@@ -60,6 +60,7 @@ import os
 # подключаем наш модуль и переименовываем
 # для исключения конфликта имен
 
+import random
 import scipy.ndimage.filters as filt
 import net as neuronet
 import numpy as np
