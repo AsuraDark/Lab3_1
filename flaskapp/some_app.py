@@ -60,10 +60,9 @@ import os
 # подключаем наш модуль и переименовываем
 # для исключения конфликта имен
 
-import random
-import scipy.ndimage.filters as filt
 import net as neuronet
 import numpy as np
+from PIL import ImageEnhance
 # метод обработки запроса GET и POST от клиента
 @app.route("/net", methods=['GET', 'POST'])
 def net():
@@ -80,27 +79,7 @@ def net():
         
         
         image_copy=fimage
-        # создаем копию изображения
-        image_copy1 = image_copy.copy()
-        # зашумляем изображение
-        image_rand = image_copy + (np.random.rand(*image_copy.shape)-0.5)*0.3
-        # нормируем зашумленное изображения в пределах от 0 до 1
-        image_rand = (image_rand-image_rand.min()) / (image_rand.max()-
-        image_rand.min())
-        # транспонируем, выводя измерение цветовых карт на первое место
-        # 3*224*224
-        image_rand = image_rand.transpose((2,0,1))
-        # фильтруем гауссовым фильтром каждую карту
-        image_filt = np.array([filt.gaussian_filter(image_rand[i],1) for i in
-        range(3)])
-        # возвращаем исходный формат 224*224*3
-        image_filt = image_filt.transpose((1,2,0))
-        image_rand = image_rand.transpose((1,2,0))
-        viewer_2.imshow(image_copy)
-        viewer_3.imshow(image_rand)
-        viewer_4.imshow(image_filt)
-        fig_.show()
-
+        
         # передаем все изображения в каталоге на классификацию
         # можете изменить немного код и передать только загруженный файл
         decode = neuronet.getresult(fimage)
@@ -109,6 +88,28 @@ def net():
             neurodic[elem[0][1]] = elem[0][2]
         # сохраняем загруженный файл
         form.upload.data.save(filename)
+        
+        fig1_ = plt.figure(figsize=(14,14))
+        sviewer_1 = fig1_.add_subplot(3,3,1)
+        sviewer_2 = fig1_.add_subplot(3,3,2)
+        sviewer_3 = fig1_.add_subplot(3,3,3)
+        
+        fimage1 = fimage.copy()
+        factor = 1
+        fimage1 = enhancer.enhance(factor)
+        
+        fimage2 = fimage.copy()
+        facor = 0.5
+        fimage2 = enhancer.enhance(factor)
+        
+        fimage3 = fimage.copy()
+        facor = 1.5
+        fimage3 = enhancer.enhance(factor)
+        
+        sviewer_1.imshow(fimage1)
+        sviewer_2.imshow(fimage2)
+        sviewer_3.imshow(fimage3)
+        plt.show
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
     return render_template('net.html', form=form, image_name=filename, neurodic=neurodic)
