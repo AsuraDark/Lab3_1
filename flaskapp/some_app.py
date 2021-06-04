@@ -75,8 +75,9 @@ def net():
         # файлы с изображениями читаются из каталога static
         filename = os.path.join('./static', secure_filename(form.upload.data.filename))
         fcount, fimage = neuronet.read_image_files(10, './static')
-        import scipy.ndimage.filters as filt
         
+        
+        image_copy=fimage
         # создаем копию изображения
         image_copy1 = image_copy.copy()
         # зашумляем изображение
