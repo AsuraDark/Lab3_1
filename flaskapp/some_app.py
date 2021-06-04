@@ -60,7 +60,7 @@ import os
 # подключаем наш модуль и переименовываем
 # для исключения конфликта имен
 
-
+import scipy.ndimage.filters as filt
 import net as neuronet
 # метод обработки запроса GET и POST от клиента
 @app.route("/net", methods=['GET', 'POST'])
@@ -75,6 +75,29 @@ def net():
         # файлы с изображениями читаются из каталога static
         filename = os.path.join('./static', secure_filename(form.upload.data.filename))
         fcount, fimage = neuronet.read_image_files(10, './static')
+        import scipy.ndimage.filters as filt
+        
+        # создаем копию изображения
+        image_copy1 = image_copy.copy()
+        # зашумляем изображение
+        image_rand = image_copy + (np.random.rand(*image_copy.shape)-0.5)*0.3
+        # нормируем зашумленное изображения в пределах от 0 до 1
+        image_rand = (image_rand-image_rand.min()) / (image_rand.max()-
+        image_rand.min())
+        # транспонируем, выводя измерение цветовых карт на первое место
+        # 3*224*224
+        image_rand = image_rand.transpose((2,0,1))
+        # фильтруем гауссовым фильтром каждую карту
+        image_filt = np.array([filt.gaussian_filter(image_rand[i],1) for i in
+        range(3)])
+        # возвращаем исходный формат 224*224*3
+        image_filt = image_filt.transpose((1,2,0))
+        image_rand = image_rand.transpose((1,2,0))
+        viewer_2.imshow(image_copy)
+        viewer_3.imshow(image_rand)
+        viewer_4.imshow(image_filt)
+        fig_.show()
+
         # передаем все изображения в каталоге на классификацию
         # можете изменить немного код и передать только загруженный файл
         decode = neuronet.getresult(fimage)
