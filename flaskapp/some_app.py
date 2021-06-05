@@ -72,6 +72,19 @@ def net():
     # обнуляем переменные передаваемые в форму
     filename = None
     neurodic = {}
+    
+    
+    height = 224
+    width = 224
+    images_resized = [[]]*fcount
+    for i in range(fcount):
+        images_resized[i] = np.array(fimage[i].resize((height,width)))/255.0
+    images_resized = np.array(images_resized)
+    image1 = images_resized[0]
+    fig = plt.figure(figsize=(224,224))
+    sviewer_1 = fig.add_subplot(1,1,1)
+    sviewer_1.imshow(image1)
+    plt.show()
     # проверяем нажатие сабмит и валидацию введенных данных
     if form.validate_on_submit():
         # файлы с изображениями читаются из каталога static
@@ -85,19 +98,7 @@ def net():
             neurodic[elem[0][1]] = elem[0][2]
         # сохраняем загруженный файл
         form.upload.data.save(filename)
-        height = 224
-        width = 224
-        images_resized = [[]]*fcount
-        for i in range(fcount):
-            images_resized[i] = np.array(fimage[i].resize((height,width)))/255.0
-        images_resized = np.array(images_resized)
-        image1 = images_resized[0]
-        fig = plt.figure(figsize=(224,224))
-        sviewer_1 = fig.add_subplot(1,1,1)
-        sviewer_1.imshow(image1)
         
-        
-        plt.show()
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
     return render_template('net.html', form=form, image_name=filename, neurodic=neurodic)
