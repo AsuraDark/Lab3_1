@@ -21,11 +21,11 @@
 <!-- отображаем загруженное изображение с закругленными углами -->
 <!-- если оно есть (после submit) -->
 {% if image_name %}
- <p>{{image_name}}
- <p><img src={{image_name}} class="img-rounded" alt="My Image" width = 224 height=224 />
- <p>{{image_name1}}
- <p><img src={{image_name1}} class="img-rounded" alt="My Image" width = 224 height=224 />
+ <figure>{{image_name}}
+ <figure><img src={{image_name}} class="img-rounded" alt="My Image" width = 224 height=224 />
+ <figure>{{image_name1}}
+ <figure><img src={{image_name1}} class="img-rounded" alt="My Image" width = 224 height=224 />
 {% else %}
- <p> There is no image yet </p>
+ <figure> There is no image yet </figure>
 {% endif %}
 {% endblock %}
