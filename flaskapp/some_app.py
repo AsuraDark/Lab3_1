@@ -93,7 +93,7 @@ def net():
         images_resized = np.array(images_resized)
         image1 = images_resized[0]
         fig = plt.figure(figsize=(224,224))
-        sviewer_1 = fig1_.add_subplot(1,1,1)
+        sviewer_1 = fig.add_subplot(1,1,1)
         sviewer_1.imshow(image1)
         
         
