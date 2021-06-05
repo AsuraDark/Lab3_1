@@ -73,7 +73,7 @@ def net():
     filename = None
     neurodic = {}
     
-    
+    fcount, fimage = neuronet.read_image_files(10, './static')
     height = 224
     width = 224
     images_resized = [[]]*fcount
