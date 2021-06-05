@@ -89,13 +89,13 @@ def net():
             
         
         image = os.path.join('./static', 'image0008.png')
-        _ = plt.hist(image.ravel(), bins = 256, color = 'orange',)
-        _ = plt.hist(image[:, :, 0].ravel(), bins = 256, color = 'red', alpha = 0.5)
-        _ = plt.hist(image[:, :, 1].ravel(), bins = 256, color = 'Green', alpha = 0.5)
-        _ = plt.hist(image[:, :, 2].ravel(), bins = 256, color = 'Blue', alpha = 0.5)
-        _ = plt.xlabel('Intensity Value')
-        _ = plt.ylabel('Count')
-        _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
+        X1 = plt.hist(image.ravel(), bins = 256, color = 'orange', )
+        X2 = plt.hist(image[:, :, 0].ravel(), bins = 256, color = 'red', alpha = 0.5)
+        X3 = plt.hist(image[:, :, 1].ravel(), bins = 256, color = 'Green', alpha = 0.5)
+        X4 = plt.hist(image[:, :, 2].ravel(), bins = 256, color = 'Blue', alpha = 0.5)
+        X5 = plt.xlabel('Intensity Value')
+        X6 = plt.ylabel('Count')
+        X7 = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.show()
         plt.savefig('my_plot.png')
         # сохраняем загруженный файл
