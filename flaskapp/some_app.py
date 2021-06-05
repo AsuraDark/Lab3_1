@@ -47,7 +47,7 @@ class NetForm(FlaskForm):
     openid = StringField('openid', validators=[DataRequired()])
     # поле загрузки файла
     # здесь валидатор укажет ввести правильные файлы
-    upload = FileField('LOAD image', validators=[FileRequired(),FileAllowed(['jpg', 'png', 'jpeg'], 'Image only!')])
+    #upload = FileField('LOAD image', validators=[FileRequired(),FileAllowed(['jpg', 'png', 'jpeg'], 'Image only!')])
     # поле формы с capture
     recaptcha = RecaptchaField()
     # кнопка submit, для пользователя отображена как send
@@ -86,7 +86,7 @@ def net():
         for elem in decode:
             neurodic[elem[0][1]] = elem[0][2]
         # сохраняем загруженный файл
-        form.upload.data.save(filename)
+        form.data.save(filename)
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
