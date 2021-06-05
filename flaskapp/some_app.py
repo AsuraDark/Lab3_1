@@ -59,7 +59,7 @@ from werkzeug.utils import secure_filename
 import os
 # подключаем наш модуль и переименовываем
 # для исключения конфликта имен
-
+import random
 import net as neuronet
 import numpy as np
 from PIL import ImageEnhance
@@ -77,10 +77,6 @@ def net():
         # файлы с изображениями читаются из каталога static
         filename = os.path.join('./static', secure_filename(form.upload.data.filename))
         fcount, fimage = neuronet.read_image_files(10, './static')
-        
-        
-        image_copy=fimage
-        
         # передаем все изображения в каталоге на классификацию
         # можете изменить немного код и передать только загруженный файл
         decode = neuronet.getresult(fimage)
@@ -89,11 +85,17 @@ def net():
             neurodic[elem[0][1]] = elem[0][2]
         # сохраняем загруженный файл
         form.upload.data.save(filename)
+        height = 224
+        width = 224
+        images_resized = [[]]*fcount
+        for i in range(fcount):
+            images_resized[i] = np.array(fimage[i].resize((height,width)))/255.0
+        images_resized = np.array(images_resized)
+        image1 = images_resized[0]
+        fig = plt.figure(figsize=224,224))
+        sviewer_1 = fig1_.add_subplot(1,1,1)
+        sviewer_1.imshow(image1)
         
-        fig1_ = plt.figure(figsize=(14,14))
-        sviewer_1 = fig1_.add_subplot(3,3,1)
-       
-        sviewer_1.imshow(fimage)
         
         plt.show()
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
