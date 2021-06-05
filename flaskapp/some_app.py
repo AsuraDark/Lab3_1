@@ -85,12 +85,26 @@ def net():
         # записываем в словарь данные классификации
         for elem in decode:
             neurodic[elem[0][1]] = elem[0][2]
+            
+            
+        
+        image = filename
+        _ = plt.hist(image.ravel(), bins = 256, color = 'orange', )
+        _ = plt.hist(image[:, :, 0].ravel(), bins = 256, color = 'red', alpha = 0.5)
+        _ = plt.hist(image[:, :, 1].ravel(), bins = 256, color = 'Green', alpha = 0.5)
+        _ = plt.hist(image[:, :, 2].ravel(), bins = 256, color = 'Blue', alpha = 0.5)
+        _ = plt.xlabel('Intensity Value')
+        _ = plt.ylabel('Count')
+        _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
+        plt.show()
+        plt.savefig('static/image00081.png')
+        image = plt.imread('static/image00081.png')
         # сохраняем загруженный файл
         #form.save(filename)
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
-    return render_template('net.html', form=form, image_name=filename,image_name1=filename, neurodic=neurodic)
+    return render_template('net.html', form=form, image_name=filename,image_name1=image, neurodic=neurodic)
 
 
 
