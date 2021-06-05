@@ -97,14 +97,12 @@ def net():
         _ = plt.ylabel('Count')
         _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.show()
-        plt.savefig('static/image00081.png')
-        image = plt.imread('static/image00081.png')
         # сохраняем загруженный файл
         #form.save(filename)
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
-    return render_template('net.html', form=form, image_name=filename,image_name1=image, neurodic=neurodic)
+    return render_template('net.html', form=form, image_name=filename,image_name1=plt.show(), neurodic=neurodic)
 
 
 
