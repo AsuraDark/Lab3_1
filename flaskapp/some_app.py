@@ -103,6 +103,7 @@ def net():
         im = Image.open(filename)
         im3 = ImageEnhance.Contrast(im)
         b = form.openid1.data
+        b = float(b)
         im3.enhance(b).save('./static/12.png')
         
         image = plt.imread('./static/12.png')
