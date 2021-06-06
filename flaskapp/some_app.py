@@ -89,7 +89,7 @@ def net():
             
             
         
-        image = plt.imread('static/image0008.png')
+        image = plt.imread(filename)
         _ = plt.hist(image.ravel(), bins = 256, color = 'orange', )
         _ = plt.hist(image[:, :, 0].ravel(), bins = 256, color = 'red', alpha = 0.5)
         _ = plt.hist(image[:, :, 1].ravel(), bins = 256, color = 'Green', alpha = 0.5)
