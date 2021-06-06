@@ -44,12 +44,12 @@ class NetForm(FlaskForm):
     # валидатор проверяет введение данных после нажатия кнопки submit
     # и указывает пользователю ввести данные если они не введены
     # или неверны
-    openid = StringField('openid', validators=[DataRequired()])
+    #openid = StringField('openid', validators=[DataRequired()])
     # поле загрузки файла
     # здесь валидатор укажет ввести правильные файлы
     #upload = FileField('LOAD image', validators=[FileRequired(),FileAllowed(['jpg', 'png', 'jpeg'], 'Image only!')])
     # поле формы с capture
-    recaptcha = RecaptchaField()
+    #recaptcha = RecaptchaField()
     openid1 = StringField('brightness', validators=[DataRequired()])
     # кнопка submit, для пользователя отображена как send
     submit = SubmitField('send')
