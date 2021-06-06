@@ -65,7 +65,6 @@ import net as neuronet
 import numpy as np
 from PIL import Image, ImageEnhance
 import matplotlib.pyplot as plt
-from io import BytesIO
 # метод обработки запроса GET и POST от клиента
 @app.route("/net", methods=['GET', 'POST'])
 def net():
