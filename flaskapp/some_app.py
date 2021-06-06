@@ -63,7 +63,7 @@ import os
 import random
 import net as neuronet
 import numpy as np
-from PIL import ImageEnhance
+from PIL import Image, ImageEnhance
 import matplotlib.pyplot as plt
 from io import BytesIO
 # метод обработки запроса GET и POST от клиента
@@ -100,6 +100,8 @@ def net():
         _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.savefig('./static/my_plot.png')
         
+        im = Image.open('./dataf/image0008.png')
+        im3 = ImageEnhance.Contrast(im)
         b = form.openid1.data
         im3.enhance(b).save('./static/12.png')
         
