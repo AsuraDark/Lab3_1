@@ -96,8 +96,9 @@ def net():
         X5 = plt.xlabel('Intensity Value')
         X6 = plt.ylabel('Count')
         X7 = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
-        plt.show()
         plt.savefig('my_plot.png')
+        plt.show()
+        
         # сохраняем загруженный файл
         #form.save(filename)
         
