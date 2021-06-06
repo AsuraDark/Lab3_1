@@ -50,6 +50,7 @@ class NetForm(FlaskForm):
     #upload = FileField('LOAD image', validators=[FileRequired(),FileAllowed(['jpg', 'png', 'jpeg'], 'Image only!')])
     # поле формы с capture
     recaptcha = RecaptchaField()
+    openid1 = StringField('brightness', validators=[DataRequired()])
     # кнопка submit, для пользователя отображена как send
     submit = SubmitField('send')
 # функция обработки запросов на адрес 127.0.0.1:5000/net
@@ -98,8 +99,19 @@ def net():
         _ = plt.ylabel('Count')
         _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.savefig('./static/my_plot.png')
-        #plt.show()
         
+        b=request.forms.get('openid1')
+        im3.enhance(b).save('./static/12.png')
+        
+        image = plt.imread('./static/12.png')
+        _ = plt.hist(image.ravel(), bins = 256, color = 'orange', )
+        _ = plt.hist(image[:, :, 0].ravel(), bins = 256, color = 'red', alpha = 0.5)
+        _ = plt.hist(image[:, :, 1].ravel(), bins = 256, color = 'Green', alpha = 0.5)
+        _ = plt.hist(image[:, :, 2].ravel(), bins = 256, color = 'Blue', alpha = 0.5)
+        _ = plt.xlabel('Intensity Value')
+        _ = plt.ylabel('Count')
+        _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
+        plt.savefig('./static/my_plot1.png')
         
         # сохраняем загруженный файл
         #form.save(filename)
