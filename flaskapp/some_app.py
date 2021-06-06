@@ -100,6 +100,8 @@ def net():
         svg_file = BytesIO()
         plt.savefig(svg_file, format='png')     # save the file to io.BytesIO
         svg_file.seek(0)
+        svg_data = svg_file.getvalue().decode() # retreive the saved data
+        svg_data = '<svg' + svg_data.split('<svg')[1]   # strip the xml header
         #plt.show()
         
         # сохраняем загруженный файл
@@ -107,7 +109,7 @@ def net():
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
-    return render_template('net.html', form=form, image_name=filename, image_name1=svg_file, neurodic=neurodic)
+    return render_template('net.html', form=form, image_name=filename, neurodic=neurodic)
 
 
 
