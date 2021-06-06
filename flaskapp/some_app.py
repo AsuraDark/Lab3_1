@@ -96,15 +96,18 @@ def net():
         X5 = plt.xlabel('Intensity Value')
         X6 = plt.ylabel('Count')
         X7 = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
-        plt.savefig('my_plot.png')
-        plt.show()
+        #plt.savefig('my_plot.png')
+        svg_file = BytesIO()
+        plt.savefig(svg_file, format='png')     # save the file to io.BytesIO
+        svg_file.seek(0)
+        #plt.show()
         
         # сохраняем загруженный файл
         #form.save(filename)
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
-    return render_template('net.html', form=form, image_name=filename, neurodic=neurodic)
+    return render_template('net.html', form=form, image_name=filename, image_name1=svg_file, neurodic=neurodic)
 
 
 
