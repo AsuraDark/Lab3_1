@@ -97,12 +97,7 @@ def net():
         X5 = plt.xlabel('Intensity Value')
         X6 = plt.ylabel('Count')
         X7 = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
-        #plt.savefig('my_plot.png')
-        svg_file = BytesIO()
-        plt.savefig(svg_file, format='png')     # save the file to io.BytesIO
-        svg_file.seek(0)
-        svg_data = svg_file.getvalue().decode() # retreive the saved data
-        svg_data = '<svg' + svg_data.split('<svg')[1]   # strip the xml header
+        plt.save('D:\Python\dataf\123.png')
         #plt.show()
         
         # сохраняем загруженный файл
