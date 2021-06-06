@@ -100,7 +100,7 @@ def net():
         _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.savefig('./static/my_plot.png')
         
-        im = Image.open('./dataf/image0008.png')
+        im = Image.open(filename)
         im3 = ImageEnhance.Contrast(im)
         b = form.openid1.data
         im3.enhance(b).save('./static/12.png')
