@@ -50,7 +50,7 @@ class NetForm(FlaskForm):
     #upload = FileField('LOAD image', validators=[FileRequired(),FileAllowed(['jpg', 'png', 'jpeg'], 'Image only!')])
     # поле формы с capture
     #recaptcha = RecaptchaField()
-    openid1 = StringField('brightness', validators=[DataRequired()])
+    openid1 = StringField('Contrast', validators=[DataRequired()])
     # кнопка submit, для пользователя отображена как send
     submit = SubmitField('send')
 # функция обработки запросов на адрес 127.0.0.1:5000/net
