@@ -99,13 +99,15 @@ def net():
         _ = plt.legend(['Total', 'Red_Channel', 'Green_Channel', 'Blue_Channel'])
         plt.savefig('my_plot.png')
         #plt.show()
+        my_plot = os.path.join('my_plot.png')
+        
         
         # сохраняем загруженный файл
         #form.save(filename)
         
     # передаем форму в шаблон , так же передаем имя файла и результат работы нейронной
     # сети если был нажат сабмит , либо передадим falsy значения
-    return render_template('net.html', form=form, image_name=filename, image_name1=my_plot.png, neurodic=neurodic)
+    return render_template('net.html', form=form, image_name=filename, image_name1=my_plot, neurodic=neurodic)
 
 
 
