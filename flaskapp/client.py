@@ -5,6 +5,9 @@ print(r.text)
 r = requests.get('http://localhost:5000/data_to') 
 print(r.status_code)
 print(r.text) 
+r = requests.get('http://localhost:5000/net') 
+print(r.status_code)
+print(r.text) 
 # импортируем нужные модули
 import os
 from io import BytesIO 
